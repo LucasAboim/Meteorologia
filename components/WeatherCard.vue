@@ -30,7 +30,8 @@ const weatherDescription = computed(() => {
 </script>
 
 <template>
-  <Card class="max-w-md mx-auto mt-6 shadow-lg rounded-lg scale-150 mt-12">
+  <div class="p-1">
+  <Card class="max-w-md mx-auto shadow-lg rounded-lg scale-150 mt-12">
     <CardHeader class="flex flex-col items-center">
       <CardTitle class="text-lg font-semibold">Tempo Atual</CardTitle>
       <WeatherIcon v-if="weatherData" :weatherCode="weatherData.weathercode" />
@@ -50,4 +51,5 @@ const weatherDescription = computed(() => {
       <p>{{ error }}</p>
     </CardContent>
   </Card>
+</div>
 </template>

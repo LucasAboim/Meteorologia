@@ -4,7 +4,7 @@ import { useWeatherStore } from '@/stores/weatherStore'
 interface WeatherData {
   temperature: number
   windspeed: number
-  weathercode: number
+  weathercode?: number
 }
 
 export function useWeather() {
@@ -32,7 +32,7 @@ export function useWeather() {
   }
 
   const weatherIcon = computed(() => {
-    if (!weatherData.value) return 'sun'
+    if (!weatherData.value || weatherData.value.weathercode === undefined) return 'sun'
 
     const code = weatherData.value.weathercode
     if (code === 0) return 'sun'
