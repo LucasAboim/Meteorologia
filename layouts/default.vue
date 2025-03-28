@@ -36,6 +36,7 @@
           <span>Configurações</span>
         </NuxtLink>
       </nav>
+      
     </header>
 
     <main class="container mx-auto p-4">
