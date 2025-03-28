@@ -13,7 +13,6 @@ onMounted(fetchWeather)
 
 <template>
   <div class="text-center p-6">
-    <h1 class="text-2xl font-bold text-blue-500">Meteorologia</h1>
     <h2 class="text-xl font-semibold">Local: {{ weatherStore.location.name }}</h2>
 
     <WeatherDisplay :weatherData="weatherData" :loading="loading" :error="error" />

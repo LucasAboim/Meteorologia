@@ -28,7 +28,14 @@ export const useWeatherStore = defineStore('weather', () => {
   const defaultUnit = 'C'
 
   const storedCityName = useLocalStorage('weather-location', defaultLocation.name)
-  const unit = useLocalStorage('weather-unit', defaultUnit)
+  const storedUnit = useLocalStorage('weather-unit', defaultUnit)
+
+const unit = computed(() => storedUnit.value)
+
+function setUnit(newUnit: string) {
+  storedUnit.value = newUnit
+}
+
 
   const location = computed(() => {
     return cities.find(c => c.name === storedCityName.value) || defaultLocation
@@ -38,9 +45,7 @@ export const useWeatherStore = defineStore('weather', () => {
     storedCityName.value = newLocation.name 
   }
 
-  function setUnit(newUnit: string) {
-    unit.value = newUnit
-  }
+  
 
   return { location, unit, cities, setLocation, setUnit }
 })

@@ -5,7 +5,7 @@ import { computed } from 'vue'
 const weatherStore = useWeatherStore()
 
 const selectedCity = computed({
-  get: () => weatherStore.location.name, // Mantém a escolha do
+  get: () => weatherStore.location.name,
   set: (newName) => {
     const city = weatherStore.cities.find(c => c.name === newName)
     if (city) {
@@ -23,7 +23,7 @@ const selectedUnit = computed({
 </script>
 
 <template>
-  <div class="p-6">
+  <div class="text-center p-6">
     <h1 class="text-2xl font-bold">Configurações</h1>
 
     <label class="block mt-4">Escolhe uma cidade:</label>
