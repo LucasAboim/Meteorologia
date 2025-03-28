@@ -2,10 +2,9 @@
   <div class="min-h-screen bg-[#fff6e4] text-foreground ">
 
     <header class="bg-[#bc8e00] text-white relative ">
-      <div class="container mx-auto flex justify-between items-center p-4 relative">
+      <div class="container mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center p-8 relative text-center">
 
-        <NuxtLink to="/" class="text-2xl font-bold flex items-center space-x-2 scale-150">
-          <span>Meteorologia</span>
+        <NuxtLink to="/" class="text-3xl font-bold flex items-center space-x-2 ">
         </NuxtLink>
 
         <nav class="hidden md:flex space-x-6 absolute left-1/2 -translate-x-1/2">

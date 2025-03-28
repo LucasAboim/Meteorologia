@@ -15,18 +15,18 @@ async function updateCity() {
 </script>
 
 <template>
-  <div class="text-center p-6">
-    <h1 class="text-2xl font-bold scale-150">Configurações</h1>
+  <div class="text-center p-8">
+    <h1 class="text-3xl font-bold  ">Configurações</h1>
 
-    <label class="block mt-6 scale-150">Escolhe uma cidade:</label>
-    <div class="flex justify-center scale-150 mt-6">
+    <label class="block mt-8 text-2xl ">Escolhe uma cidade:</label>
+    <div class="flex justify-center mt-6">
       <input
         v-if="isEditing"
         v-model="cityInput"
         @keyup.enter="updateCity"
         @blur="isEditing = false"
         placeholder="Digite a cidade e pressione Enter"
-        class="mt-2 p-2 border rounded text-center w-48"
+        class="mt-2 p-2 border rounded text-center w-78"
       />
       <p
         v-else
@@ -37,8 +37,8 @@ async function updateCity() {
       </p>
     </div>
 
-    <label class="block mt-4 scale-150 mt-6">Unidade de temperatura:</label>
-    <select v-model="weatherStore.unit" class="mt-2 p-2 border rounded w-48 bg-white focus:bg-[#ebb200] focus:text-white scale-150 mt-6">
+    <label class="block mt-4 mt-6">Unidade de temperatura:</label>
+    <select v-model="weatherStore.unit" class="mt-2 p-2 border rounded w-48 bg-white focus:bg-[#ebb200] focus:text-white   mt-6">
       <option value="C">Celsius (°C)</option>
       <option value="F">Fahrenheit (°F)</option>
     </select>

@@ -30,26 +30,26 @@ const weatherDescription = computed(() => {
 </script>
 
 <template>
-  <div class="p-1">
-  <Card class="max-w-md mx-auto shadow-lg rounded-lg scale-150 mt-12">
-    <CardHeader class="flex flex-col items-center">
-      <CardTitle class="text-lg font-semibold">Tempo Atual</CardTitle>
-      <WeatherIcon v-if="weatherData" :weatherCode="weatherData.weathercode" />
-    </CardHeader>
-    <CardContent v-if="!loading && !error && weatherData" class="text-gray-700 text-base text-center">
-      <p>
-        <FontAwesomeIcon :icon="faTemperatureHalf" />
-        {{ weatherDescription.temperature }} |
-        <FontAwesomeIcon :icon="faWind" />
-        {{ weatherDescription.windspeed }} km/h
-      </p>
-    </CardContent>
-    <CardContent v-if="loading" class="text-blue-500 text-center">
-      <p>Carregando...</p>
-    </CardContent>
-    <CardContent v-if="error" class="text-red-500 text-center">
-      <p>{{ error }}</p>
-    </CardContent>
-  </Card>
-</div>
+  <div class="p-4"> <!-- Aumentei o padding -->
+    <Card class="max-w-lg mx-auto shadow-lg rounded-lg mt-12 p-6"> <!-- Aumentei o tamanho do Card e padding -->
+      <CardHeader class="flex flex-col items-center">
+        <CardTitle class="text-2xl font-bold">Tempo Atual</CardTitle> <!-- Título maior -->
+        <WeatherIcon v-if="weatherData" :weatherCode="weatherData.weathercode" />
+      </CardHeader>
+      <CardContent v-if="!loading && !error && weatherData" class="text-gray-700 text-xl text-center"> <!-- Texto maior -->
+        <p>
+          <FontAwesomeIcon :icon="faTemperatureHalf" class="text-2xl" /> <!-- Ícones maiores -->
+          {{ weatherDescription.temperature }} |
+          <FontAwesomeIcon :icon="faWind" class="text-2xl" />
+          {{ weatherDescription.windspeed }} km/h
+        </p>
+      </CardContent>
+      <CardContent v-if="loading" class="text-blue-500 text-center text-xl">
+        <p>Carregando...</p>
+      </CardContent>
+      <CardContent v-if="error" class="text-red-500 text-center text-xl">
+        <p>{{ error }}</p>
+      </CardContent>
+    </Card>
+  </div>
 </template>
