@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-background text-foreground">
 
-    <header class="bg-blue-600 text-white relative">
+    <header class="bg-[#bc8e00] text-white relative">
       <div class="container mx-auto flex justify-between items-center p-4 relative">
 
         <NuxtLink to="/" class="text-xl font-bold flex items-center space-x-2">
@@ -26,12 +26,12 @@
       </div>
 
       <!-- telemovel -->
-      <nav v-if="menuOpen" class="md:hidden bg-blue-700 text-center py-2 space-y-2">
-        <NuxtLink to="/" class="block hover:bg-blue-800 p-2 flex justify-center items-center space-x-1">
+      <nav v-if="menuOpen" class="md:hidden bg-[#dea700] text-center py-2 space-y-2">
+        <NuxtLink to="/" class="block hover:bg-[#d19f00] p-2 flex justify-center items-center space-x-1">
           <font-awesome-icon :icon="['fas', 'house']" />
           <span>Início</span>
         </NuxtLink>
-        <NuxtLink to="/settings" class="block hover:bg-blue-800 p-2 flex justify-center items-center space-x-1">
+        <NuxtLink to="/settings" class="block hover:bg-[#d19f00] p-2 flex justify-center items-center space-x-1">
           <font-awesome-icon :icon="['fas', 'cog']" />
           <span>Configurações</span>
         </NuxtLink>

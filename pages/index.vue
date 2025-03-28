@@ -1,21 +1,25 @@
 <script setup>
 import { useWeatherStore } from '@/stores/weatherStore'
 import { useWeather } from '@/composables/useWeather'
-import { onMounted } from 'vue'
-import WeatherDisplay from '@/components/WeatherDisplay.vue'
-import UpdateButton from '@/components/UpdateButton.vue'
+import { onMounted, onUnmounted } from 'vue'
+import WeatherCard from '@/components/WeatherCard.vue'
 
 const weatherStore = useWeatherStore()
 const { weatherData, loading, error, fetchWeather } = useWeather()
 
-onMounted(fetchWeather)
+onMounted(() => {
+  fetchWeather()
+  const interval = setInterval(fetchWeather, 20000)
+  onUnmounted(() => clearInterval(interval))
+})
 </script>
 
 <template>
   <div class="text-center p-6">
-    <h2 class="text-xl font-semibold">Local: {{ weatherStore.location.name }}</h2>
+    <h2 class="text-xl font-semibold">📍 Local: {{ weatherStore.location.name }}</h2>
 
-    <WeatherDisplay :weatherData="weatherData" :loading="loading" :error="error" />
+    <WeatherCard :weatherData="weatherData" :loading="loading" :error="error" />
     <UpdateButton :fetchWeather="fetchWeather" />
   </div>
 </template>
+
