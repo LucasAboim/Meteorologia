@@ -16,7 +16,7 @@ onMounted(() => {
 
 <template>
   <div class="text-center p-6">
-    <h2 class="text-xl font-semibold">{{ weatherStore.location.name }}</h2>
+    <h2 class="text-xl font-semibold scale-150">{{ weatherStore.location.name }}</h2>
 
     <WeatherCard :weatherData="weatherData" :loading="loading" :error="error" />
     <UpdateButton :fetchWeather="fetchWeather" />
