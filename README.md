@@ -1,3 +1,5 @@
+#To see the app working: https://67e6959114548b134519639f--dulcet-griffin-9915c4.netlify.app/
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
