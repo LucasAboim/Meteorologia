@@ -7,9 +7,17 @@ interface WeatherData {
   weathercode?: number
 }
 
+interface DailyForecast {
+  time: string[]
+  temperature_2m_max: number[]
+  temperature_2m_min: number[]
+  weathercode: number[]
+}
+
 export function useWeather() {
   const weatherStore = useWeatherStore()
   const weatherData = ref<WeatherData | null>(null)
+  const dailyForecast = ref<DailyForecast | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
 
@@ -19,11 +27,13 @@ export function useWeather() {
 
     try {
       const { lat, lon } = weatherStore.location
+      const unit = weatherStore.unit === 'C' ? 'celsius' : 'fahrenheit'
 
-      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=${weatherStore.unit === 'C' ? 'celsius' : 'fahrenheit'}`)
+      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=7&temperature_unit=${unit}`)
       const data = await res.json()
 
       weatherData.value = data.current_weather
+      dailyForecast.value = data.daily
     } catch (err) {
       error.value = 'Erro ao obter os dados'
     } finally {
@@ -33,7 +43,6 @@ export function useWeather() {
 
   const weatherIcon = computed(() => {
     if (!weatherData.value || weatherData.value.weathercode === undefined) return 'sun'
-
     const code = weatherData.value.weathercode
     if (code === 0) return 'sun'
     if (code >= 1 && code <= 3) return 'cloud'
@@ -41,9 +50,8 @@ export function useWeather() {
     if (code >= 51 && code <= 67) return 'cloud-rain'
     if (code >= 71 && code <= 77) return 'snowflake'
     if (code >= 80 && code <= 99) return 'wind'
-
     return 'sun'
   })
 
-  return { weatherData, loading, error, fetchWeather, weatherIcon }
+  return { weatherData, dailyForecast, loading, error, fetchWeather, weatherIcon }
 }

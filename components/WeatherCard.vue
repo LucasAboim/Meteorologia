@@ -19,29 +19,24 @@ const temperature = computed(() => {
     ? (props.weatherData.temperature ) + '°F' 
     : props.weatherData.temperature + '°C'
 })
-
-const weatherDescription = computed(() => {
-  if (!props.weatherData) return null
-  return {
-    temperature: temperature.value,
-    windspeed: props.weatherData.windspeed
-  }
-})
 </script>
 
 <template>
-  <div class="p-4"> <!-- Aumentei o padding -->
-    <Card class="max-w-lg mx-auto shadow-lg rounded-lg mt-12 p-6"> <!-- Aumentei o tamanho do Card e padding -->
+  <div class="p-4"> 
+    <Card class="max-w-lg mx-auto shadow-lg rounded-lg mt-12 p-6"> 
       <CardHeader class="flex flex-col items-center">
-        <CardTitle class="text-2xl font-bold">Tempo Atual</CardTitle> <!-- Título maior -->
+        <CardTitle v-if="!$slots.header" class="text-2xl font-bold">Tempo Atual</CardTitle> 
+        <slot name="header"></slot> 
         <WeatherIcon v-if="weatherData" :weatherCode="weatherData.weathercode" />
       </CardHeader>
-      <CardContent v-if="!loading && !error && weatherData" class="text-gray-700 text-xl text-center"> <!-- Texto maior -->
+      <CardContent v-if="!loading && !error && weatherData" class="text-gray-700 text-xl text-center"> 
         <p>
-          <FontAwesomeIcon :icon="faTemperatureHalf" class="text-2xl" /> <!-- Ícones maiores -->
-          {{ weatherDescription.temperature }} |
+          <FontAwesomeIcon :icon="faTemperatureHalf" class="text-2xl" /> 
+          {{ temperature }}
+        </p>
+        <p v-if="weatherData.windspeed !== undefined"> 
           <FontAwesomeIcon :icon="faWind" class="text-2xl" />
-          {{ weatherDescription.windspeed }} km/h
+          {{ weatherData.windspeed }} km/h
         </p>
       </CardContent>
       <CardContent v-if="loading" class="text-blue-500 text-center text-xl">
